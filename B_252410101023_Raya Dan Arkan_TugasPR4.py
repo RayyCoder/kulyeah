@@ -8,13 +8,12 @@ dataMahasiswa = {
 dataMahasiswa = pd.DataFrame(dataMahasiswa)
 dataMahasiswa.to_csv('dataMahasiswa.csv', index=False)
 
-
 def menampilkan():
     os.system('cls')
     print('===== DATA MAHASISWA TERBARU =====')
     df = pd.read_csv('dataMahasiswa.csv')
     print(df)
-    input('Tekan Enter Untuk Kembali')
+    input('Tekan Enter Untuk Kembali ke Menu Utama....')
     utama()
 
 def penambahan():
@@ -26,8 +25,38 @@ def penambahan():
     df = pd.read_csv('dataMahasiswa.csv')
     df = pd.concat([df, pd.DataFrame([{'Nama': nama, 'NIM': nim, 'Program Studi': prodi} ])], ignore_index= True)
     df.to_csv('dataMahasiswa.csv', index=False)
-    print('Data Berhasil Ditambahkan')
-    input('Tekan Enter Untuk Kembali Ke Menu Awal')
+    print('---- Data Berhasil Ditambahkan ----')
+    print('Berikut Adalah Data yang Baru Saja Anda Tambahkan:')
+    print(df.tail(1))
+    input('Tekan Enter Untuk Kembali Ke Menu Utama....')
+    utama()
+
+def ubah():
+    os.system('cls')
+    print('===== MENU PERUBAHAN DATA =====')
+    df = pd.read_csv('dataMahasiswa.csv')
+    print(df)
+    nama_mhs = input('Pilih dan Masukkan Nama Mahasiswa yang ingin diubah datanya: ')
+    ubah_nim = int(input('Masukkan NIM baru: '))
+    ubah_prodi = input('Masukkan Program Studi baru: ')
+    df.loc[df['Nama'] == nama_mhs, ['NIM', 'Program Studi']] = [ubah_nim, ubah_prodi]
+    df.to_csv('dataMahasiswa.csv', index=False)
+    print(f"---- Data Mahasiswa Bernama '{nama_mhs}' Telah Berhasil Diubah ----")
+    print('Berikut Detail Perubahannya:')
+    print(df[df['Nama'] == nama_mhs])
+    input('Tekan Enter Untuk Kembali ke Menu Utama....')
+    utama()
+
+def hapus():
+    os.system('cls')
+    print('===== MENU PENGHAPUSAN DATA =====')
+    df = pd.read_csv('dataMahasiswa.csv')
+    print(df)
+    nama = input("Masukkan Nama Mahasiswa yang ingin dihapus datanya: ")
+    df = df[df['Nama'] != nama]
+    df.to_csv('dataMahasiswa.csv', index=False)
+    print(f"---- Data Mahasiswa Bernama '{nama}' Telah Berhasil Dihapus ----")
+    input('Tekan Enter Untuk Kembali ke Menu Utama....')
     utama()
 
 def utama():
@@ -43,5 +72,9 @@ def utama():
         menampilkan()
     if pemilihan == 2:
         penambahan()
+    if pemilihan == 3:
+        ubah()
+    if pemilihan == 4:
+        hapus()
 
 utama()
