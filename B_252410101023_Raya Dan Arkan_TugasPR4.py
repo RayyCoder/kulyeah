@@ -1,13 +1,16 @@
-import pandas as pd
-import os 
+import pandas as pd # Melakukan import library pandas
+import os           # Melakukan import library os
+
+# Membuat Data Awal (Nama, NIM, Program Studi)
 dataMahasiswa = {
     'Nama' : ['RAYA DAN ARKAN', 'MUHAMMAD FATH RIFKY HALMAR', 'NAYSILA AMELIA PUTRI', 'ANGGUN CANTIKA BELLIANA HASTINE', 'MAULANA FATHIR HIDAYAT', 'MUHAMMAD RADITYA ZIDANE', 'MIRZA UCHMAL GANI', 'CAESYA VALENZIA AGATHA', 'IBNU ATHA ADHANY', 'KIRANA CINTA LESTARI'],
     'NIM'  : [252410101023, 252410101043, 252410101022, 252410101036, 252410101046, 252410102055, 252410102107, 252410102008, 252410103103, 252410103022],
     'Program Studi' : ['Sistem Informasi', 'Sistem Informasi', 'Sistem Informasi', 'Sistem Informasi', 'Sistem Informasi', 'Teknologi Informasi', 'Teknologi Informasi', 'Teknologi Informasi', 'Informatika', 'Informatika']
 }
-dataMahasiswa = pd.DataFrame(dataMahasiswa)
-dataMahasiswa.to_csv('dataMahasiswa.csv', index=False)
+dataMahasiswa = pd.DataFrame(dataMahasiswa) # Menjadikan data menjadi dataframe
+dataMahasiswa.to_csv('dataMahasiswa.csv', index=False) # Memasukkan data ke csv
 
+# Membuat Fungsi 'menampilkan()' untuk menampilkan keseluruhan data terbaru
 def menampilkan():
     os.system('cls')
     print('===== DATA MAHASISWA TERBARU =====')
@@ -16,6 +19,7 @@ def menampilkan():
     input('Tekan Enter Untuk Kembali ke Menu Utama....')
     utama()
 
+# Membuat Fungsi 'penambahan()' yang berisi program untuk menambahkan data yang belum ada di data awal 
 def penambahan():
     os.system('cls')
     print('===== SILAHKAN MENAMBAH DATA BARU =====')
@@ -31,6 +35,7 @@ def penambahan():
     input('Tekan Enter Untuk Kembali Ke Menu Utama....')
     utama()
 
+# Membuat Fungsi 'ubah()' yang berisi program untuk user dapat merubah atau mengedit data yang sudah ada
 def ubah():
     os.system('cls')
     print('===== MENU PERUBAHAN DATA =====')
@@ -47,6 +52,7 @@ def ubah():
     input('Tekan Enter Untuk Kembali ke Menu Utama....')
     utama()
 
+# Membuat Fungsi 'hapus()' yang berisi program untuk user menghapus sebagian atau beberapa data yang ada
 def hapus():
     os.system('cls')
     print('===== MENU PENGHAPUSAN DATA =====')
@@ -59,6 +65,7 @@ def hapus():
     input('Tekan Enter Untuk Kembali ke Menu Utama....')
     utama()
 
+# Membuat Fungsi 'utama()' yang berisi kumpulan menu utama, juga sebagai home/beranda
 def utama():
     os.system('cls')
     print('===== SISTEM PENGELOLA DATA MAHASISWA =====')
